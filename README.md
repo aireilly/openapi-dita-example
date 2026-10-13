@@ -1,6 +1,6 @@
 # OpenDataHub MaaS API to Pages example
 
-This repo converts the OpenDataHub Model as a Service (MaaS) back-end for the front end (BFF) API spec into DITA and builds a `Zensical` site. It uses the `com.redhat.openapi` and `com.redhat.zensical` DITA-OT plugins. GitHub Actions publishes the site to Pages on each push to `main`.
+This repo converts the OpenDataHub Model as a Service (MaaS) back-end for the front end (BFF) API spec into DITA and builds a `Zensical` site. It uses the [com.redhat.openapi](https://github.com/aireilly/com.redhat.openapi) and [com.redhat.zensical](https://github.com/aireilly/com.redhat.zensical) DITA-OT plugins. GitHub Actions publishes the site to Pages on each push to `main`.
 
 ## Build locally
 
