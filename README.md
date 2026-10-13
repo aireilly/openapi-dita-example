@@ -10,7 +10,7 @@ Install Podman, then run:
 ./scripts/build.sh
 ```
 
-The script pulls `quay.io/rhn_support_aireilly/dita-ot`, installs both plugins in the container, and downloads the MaaS BFF spec from `opendatahub-io/odh-dashboard` (`packages/maas/bff/openapi.yaml` on `main`). It writes the site to `out/site`. The compact sidebar links to the home page; search and topic links reach the full reference. Set `OPENAPI_SPEC_URL` and `OPENAPI_SPEC_FILENAME` to build another spec.
+The script pulls `quay.io/rhn_support_aireilly/dita-ot`, installs both plugins in the container, and downloads the [MaaS BFF OpenAPI spec](https://github.com/opendatahub-io/odh-dashboard/blob/main/packages/maas/bff/openapi.yaml) from the [OpenDataHub Dashboard repository](https://github.com/opendatahub-io/odh-dashboard). It writes the site to `out/site`. The compact sidebar links to the home page; search and topic links reach the full reference. Set `OPENAPI_SPEC_URL` and `OPENAPI_SPEC_FILENAME` to build another spec.
 
 This spec documents the MaaS backend in an OpenDataHub cluster. It needs a bearer token. GitHub Pages serves the docs, not the API. The header links to this repo, and the palette button switches between light and dark themes.
 
