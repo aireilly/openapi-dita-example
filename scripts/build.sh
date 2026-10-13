@@ -69,7 +69,24 @@ podman run --rm \
 site_name = "$SITE_NAME"
 site_url = "$SITE_URL"
 site_description = "$SITE_DESCRIPTION"
+repo_url = "https://github.com/aireilly/openapi-dita-example"
+repo_name = "aireilly/openapi-dita-example"
 nav = ["index.md"]
+
+[project.theme.icon]
+repo = "fontawesome/brands/github"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: light)"
+scheme = "default"
+toggle.icon = "lucide/sun"
+toggle.name = "Switch to dark mode"
+
+[[project.theme.palette]]
+media = "(prefers-color-scheme: dark)"
+scheme = "slate"
+toggle.icon = "lucide/moon"
+toggle.name = "Switch to light mode"
 EOF
 
     if [[ ! -f /build/openapi2dita.zip ]]; then
