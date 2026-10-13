@@ -4,13 +4,13 @@ This repo converts the OpenDataHub Model as a Service (MaaS) back-end for the fr
 
 ## Build locally
 
-Install Podman. Keep both plugin repos next to this repo at `../com.redhat.openapi` and `../com.redhat.zensical`. Then run:
+Install Podman, then run:
 
 ```bash
 ./scripts/build.sh
 ```
 
-The script pulls `quay.io/rhn_support_aireilly/dita-ot`, installs both plugins in the container, and downloads the MaaS BFF spec from `opendatahub-io/odh-dashboard` (`packages/maas/bff/openapi.yaml` on `main`). It writes the site to `out/site`. The compact sidebar links to the home page; search and topic links reach the full reference. Set `OPENAPI_PLUGIN_DIR` and `ZENSICAL_PLUGIN_DIR` to use plugin checkouts at other paths. Set `OPENAPI_SPEC_URL` and `OPENAPI_SPEC_FILENAME` to build another spec.
+The script pulls `quay.io/rhn_support_aireilly/dita-ot`, installs both plugins in the container, and downloads the MaaS BFF spec from `opendatahub-io/odh-dashboard` (`packages/maas/bff/openapi.yaml` on `main`). It writes the site to `out/site`. The compact sidebar links to the home page; search and topic links reach the full reference. Set `OPENAPI_SPEC_URL` and `OPENAPI_SPEC_FILENAME` to build another spec.
 
 This spec documents the MaaS backend in an OpenDataHub cluster. It needs a bearer token. GitHub Pages serves the docs, not the API. The header links to this repo, and the palette button switches between light and dark themes.
 
@@ -18,4 +18,4 @@ To preview the result, run `python3 -m http.server --directory out/site 8000` an
 
 ## Publish with GitHub Actions
 
-The workflow checks out the `Zensical` plugin, downloads the latest `openapi2dita.zip` release, and runs the same script. In the repo settings, set GitHub Pages **Build and deployment** to **GitHub Actions**. The OpenDataHub MaaS spec builds a 2.8 MB site, far under GitHub Pages' 1 GB site limit.
+The workflow checks out the `Zensical` plugin, downloads the latest `openapi2dita.zip` release, and runs the same script. In the repo settings, set GitHub Pages **Build and deployment** to **GitHub Actions**. The OpenDataHub MaaS spec builds a 3.2 MB site, far under GitHub Pages' 1 GB site limit.
