@@ -1,0 +1,59 @@
+name: Build and publish Pages
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  publish:
+    runs-on: ubuntu-24.04
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Check out this example
+        uses: actions/checkout@v7
+
+      - name: Check out the Zensical DITA-OT plugin
+        uses: actions/checkout@v7
+        with:
+          repository: aireilly/com.redhat.zensical
+          ref: main
+          path: vendor/com.redhat.zensical
+
+      - name: Download the latest OpenAPI DITA-OT plugin release
+        run: >-
+          curl --fail --location --retry 3 --silent --show-error
+          https://github.com/aireilly/com.redhat.openapi/releases/latest/download/openapi2dita.zip
+          --output "$RUNNER_TEMP/openapi2dita.zip"
+
+      - name: Configure GitHub Pages
+        id: pages
+        uses: actions/configure-pages@v6
+
+      - name: Build the site
+        env:
+          OPENAPI_PLUGIN_ZIP: ${{ runner.temp }}/openapi2dita.zip
+          ZENSICAL_PLUGIN_DIR: ${{ github.workspace }}/vendor/com.redhat.zensical
+          SITE_URL: ${{ steps.pages.outputs.base_url }}
+        run: ./scripts/build.sh
+
+      - name: Upload the Pages artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: out/site
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5
