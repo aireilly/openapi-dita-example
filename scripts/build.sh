@@ -41,6 +41,7 @@ mkdir -p "$build_dir/plugins/zensical"
 cp -a "$zensical_plugin/plugin.xml" "$zensical_plugin/build_zensical.xml" \
   "$zensical_plugin/conductor.xml" "$zensical_plugin/xsl" \
   "$zensical_plugin/python" "$zensical_plugin/resources" "$build_dir/plugins/zensical/"
+cp -a "$repo_root/scripts/postprocess_site.py" "$build_dir/"
 
 podman pull "$image"
 podman run --rm \
@@ -102,6 +103,7 @@ EOF
     test -f "$map"
     dita --input="$map" --format=zensical --output=/build/site-root \
       -Dzensical.config=/build/zensical.toml
+    python3 /build/postprocess_site.py /build/site-root/site
     test -f /build/site-root/site/index.html
   '
 
