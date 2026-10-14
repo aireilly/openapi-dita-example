@@ -1,0 +1,123 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="listAllSubscriptions" xml:lang="en-US">
+   <title>List all subscriptions</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>subscriptions</keyword>
+         </keywords>
+         <othermeta name="http-method" content="GET"/>
+         <othermeta name="path" content="/api/v1/all-subscriptions"/>
+         <othermeta name="operationId" content="listAllSubscriptions"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>GET /api/v1/all-subscriptions</b></p>
+         <codeblock outputclass="language-http">GET /maas/api/v1/all-subscriptions</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Returns all MaaSSubscription resources across the cluster.
+K8s calls: GET /k8s/v1/maassubscription</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>List of subscriptions</p></stentry>
+               <stentry><p>object</p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>401</codeph> Unauthorized</stentry>
+               <stentry><p>Unauthorized</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>403</codeph> Forbidden</stentry>
+               <stentry><p>Forbidden. Insufficient permissions to list subscriptions.</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+         </simpletable>
+         <p><b>200 OK response body</b></p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>data</codeph></stentry>
+               <stentry>array of <xref href="../schemas/MaaSSubscription.dita" type="reference">MaaSSubscription</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X GET "/maas/api/v1/all-subscriptions" \
+  -H "Authorization: Bearer $TOKEN"</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "data": [
+    {
+      "name": "premium-team-sub",
+      "namespace": "maas-system",
+      "phase": "Active",
+      "inferencePriority": 10,
+      "owner": {
+        "groups": [
+          {
+            "name": "premium-users"
+          }
+        ]
+      },
+      "modelRefs": [
+        {
+          "name": "llama-2-7b-chat",
+          "namespace": "maas-models",
+          "tokenRateLimits": [
+            {
+              "limit": 100000,
+              "window": "24h"
+            }
+          ]
+        }
+      ],
+      "creationTimestamp": "2025-03-01T10:00:00Z"
+    }
+  ]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/MaaSSubscription.dita" type="reference"/>
+         <link href="../schemas/ErrorResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

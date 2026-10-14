@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="Model" xml:lang="en-US">
+   <title>Model</title>
+   <refbody>
+      <section id="description">
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>id</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>The model identifier</p><p>Example: <codeph>llama-2-7b-chat</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>object</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>The object type, always "model"</p><p>Example: <codeph>model</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>created</codeph></stentry>
+               <stentry>integer (int64)</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>The Unix timestamp (in seconds) when the model was created</p><p>Example: <codeph>1672531200</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>owned_by</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>The namespace and MaaSModelRef name (format: namespace/name)</p><p>Example: <codeph>model-namespace/llama-2-7b-chat</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>ready</codeph></stentry>
+               <stentry>boolean</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Model ready status</p><p>Example: <codeph>true</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>url</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Model URL (optional)</p><p>Example: <codeph>https://api.example.com/v1/models/llama-2-7b-chat</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelDetails</codeph></stentry>
+               <stentry><xref href="ModelDetails.dita" type="reference">ModelDetails</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>kind</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>The model reference kind (e.g., "LLMInferenceService")</p><p>Example: <codeph>LLMInferenceService</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>subscriptions</codeph></stentry>
+               <stentry>array of <xref href="SubscriptionInfo.dita" type="reference">SubscriptionInfo</xref></stentry>
+               <stentry>No</stentry>
+               <stentry><p>Subscriptions that provide access to this model.
+When <codeph>X-MaaS-Return-All-Models</codeph> is used, models accessible via multiple subscriptions
+include multiple entries in this array.</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "created": 1672531200,
+  "id": "llama-2-7b-chat",
+  "object": "model",
+  "owned_by": "model-namespace/llama-2-7b-chat",
+  "ready": true,
+  "url": "https://api.example.com/v1/models/llama-2-7b-chat",
+  "modelDetails": {
+    "displayName": "Llama 2 7B Chat",
+    "description": "A large language model optimized for chat use cases",
+    "genaiUseCase": "chat",
+    "contextWindow": "4096"
+  },
+  "kind": "LLMInferenceService",
+  "subscriptions": [
+    {
+      "name": "premium-subscription",
+      "displayName": "Premium Subscription",
+      "description": "Premium subscription with higher rate limits"
+    }
+  ]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="ModelListResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="searchApiKeys" xml:lang="en-US">
+   <title>Search and filter API keys</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>api-keys</keyword>
+         </keywords>
+         <othermeta name="http-method" content="POST"/>
+         <othermeta name="path" content="/api/v1/api-keys/search"/>
+         <othermeta name="operationId" content="searchApiKeys"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>POST /api/v1/api-keys/search</b></p>
+         <codeblock outputclass="language-http">POST /maas/api/v1/api-keys/search</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Search API keys with flexible filtering, sorting, and pagination. Supports filtering by username (admin-only), subscription name, status, sorting by multiple fields, and pagination.</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="request-body">
+         <title>Request body</title>
+         <p>Optional.</p>
+         <p>Content type: <codeph>application/json</codeph></p>
+         <p>Schema: object</p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>filters</codeph></stentry>
+               <stentry>object</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>filters.username</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Filter by username (admin-only)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>filters.subscription</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Filter by subscription. Matches the subscription id on the key</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>filters.status</codeph></stentry>
+               <stentry>array of string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Filter by status (active, revoked, expired). Defaults to active only.</p><p>Allowed values: <codeph>active</codeph>, <codeph>revoked</codeph>, <codeph>expired</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>sort</codeph></stentry>
+               <stentry>object</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>sort.by</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Field to sort by</p><p>Allowed values: <codeph>created_at</codeph>, <codeph>expires_at</codeph>, <codeph>last_used_at</codeph>, <codeph>name</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>sort.order</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Sort order</p><p>Allowed values: <codeph>asc</codeph>, <codeph>desc</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>pagination</codeph></stentry>
+               <stentry>object</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>pagination.limit</codeph></stentry>
+               <stentry>integer</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Default: <codeph>50</codeph></p><p>Constraints: minimum 1; maximum 100</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>pagination.offset</codeph></stentry>
+               <stentry>integer</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Default: <codeph>0</codeph></p><p>Constraints: minimum 0</p></stentry>
+            </strow>
+         </simpletable>
+         <p>Example:</p>
+         <codeblock outputclass="language-json">{
+  "filters": {
+    "status": ["active"]
+  },
+  "sort": {
+    "by": "created_at",
+    "order": "desc"
+  },
+  "pagination": {
+    "limit": 50,
+    "offset": 0
+  }
+}</codeblock>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>OK response.</p></stentry>
+               <stentry><p><xref href="../schemas/ApiKeyListResponse.dita" type="reference">ApiKeyListResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>400</codeph> Bad Request</stentry>
+               <stentry><p>Bad Request. Invalid search parameters.</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>401</codeph> Unauthorized</stentry>
+               <stentry><p>Unauthorized response.</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X POST "/maas/api/v1/api-keys/search" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "filters": {
+    "status": ["active"]
+  },
+  "sort": {
+    "by": "created_at",
+    "order": "desc"
+  },
+  "pagination": {
+    "limit": 50,
+    "offset": 0
+  }
+}'</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "object": "list",
+  "data": [
+    {
+      "id": "key_abc123",
+      "name": "my-production-key",
+      "creationDate": "2024-01-15T10:30:00Z",
+      "status": "active"
+    },
+    {
+      "id": "key_def456",
+      "name": "my-test-key",
+      "creationDate": "2024-01-14T09:15:00Z",
+      "expirationDate": "2024-04-14T09:15:00Z",
+      "status": "active"
+    }
+  ],
+  "has_more": true
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/ApiKeyListResponse.dita" type="reference"/>
+         <link href="../schemas/ErrorResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

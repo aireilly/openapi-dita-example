@@ -1,0 +1,132 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="MaaSModelRefSummary" xml:lang="en-US">
+   <title>MaaSModelRefSummary</title>
+   <refbody>
+      <section id="description">
+         <p>BFF representation of a MaaSModelRef Kubernetes custom resource</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name of the MaaSModelRef resource</p><p>Example: <codeph>llama-2-7b-chat</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Namespace of the MaaSModelRef resource</p><p>Example: <codeph>maas-models</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name (from openshift.io/display-name annotation)</p><p>Example: <codeph>Granite 3 8B Instruct</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional description of the model (from openshift.io/description annotation)</p><p>Example: <codeph>IBM Granite 3 8B instruction-tuned language model.</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRef</codeph></stentry>
+               <stentry><xref href="ModelReference.dita" type="reference">ModelReference</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Current phase of the model (from status)</p><p>Allowed values: <codeph>Pending</codeph>, <codeph>Ready</codeph>, <codeph>Unhealthy</codeph>, <codeph>Failed</codeph></p><p>Example: <codeph>Ready</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>statusMessage</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable status message from the Ready condition in status.conditions</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Reason from the Ready condition in status.conditions</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>status</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Status from the Ready condition in status.conditions (e.g. True, False, Unknown)</p><p>Example: <codeph>True</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>conditionType</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Condition type from the Ready condition in status.conditions</p><p>Example: <codeph>Ready</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>lastTransitionTime</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>lastTransitionTime from the Ready condition in status.conditions</p><p>Example: <codeph>2026-01-01T00:00:00Z</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>endpoint</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Endpoint URL for the model (from status)</p><p>Example: <codeph>https://llama-2-7b-chat.example.com</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelCapabilities</codeph></stentry>
+               <stentry>array of string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Model capability tags from the opendatahub.io/model-capabilities annotation (e.g. text-generation, vision). Absent when the annotation was not set.</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "llama-2-7b-chat",
+  "namespace": "maas-models",
+  "displayName": "Granite 3 8B Instruct",
+  "description": "IBM Granite 3 8B instruction-tuned language model.",
+  "modelRef": {
+    "kind": "LLMInferenceService",
+    "name": "llama-2-7b-chat"
+  },
+  "phase": "Ready",
+  "statusMessage": "string",
+  "reason": "Reconciled",
+  "status": "True",
+  "conditionType": "Ready",
+  "lastTransitionTime": "2026-01-01T00:00:00Z",
+  "endpoint": "https://llama-2-7b-chat.example.com",
+  "modelCapabilities": ["text-generation", "vision"]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/listAllMaasModels.dita" type="reference"/>
+         <link href="../operations/createMaaSModelRef.dita" type="reference"/>
+         <link href="../operations/updateMaaSModelRef.dita" type="reference"/>
+         <link href="SubscriptionInfoResponse.dita" type="reference"/>
+         <link href="PolicyInfoResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

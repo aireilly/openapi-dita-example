@@ -13,6 +13,7 @@ zensical_plugin="${ZENSICAL_PLUGIN_DIR:-$repo_root/../com.redhat.zensical}"
 site_url="${SITE_URL:-https://aireilly.github.io/openapi-dita-example/}"
 site_url="${site_url%/}/"
 output_dir="${OUTPUT_DIR:-$repo_root/out}"
+dita_dir="${DITA_DIR:-$repo_root/dita}"
 
 if [[ -n "$openapi_plugin_zip" ]]; then
   if [[ ! -f "$openapi_plugin_zip" ]]; then
@@ -105,7 +106,11 @@ EOF
     test -f /build/site-root/site/index.html
   '
 
+rm -rf "$dita_dir"
+cp -a "$build_dir/api-dita" "$dita_dir"
+
 mkdir -p "$output_dir"
 rm -rf "$output_dir/site"
 cp -a "$build_dir/site-root/site" "$output_dir/site"
 echo "Built $site_name Pages site at $output_dir/site"
+echo "Wrote the generated DITA source to $dita_dir"

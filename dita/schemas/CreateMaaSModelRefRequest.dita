@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="CreateMaaSModelRefRequest" xml:lang="en-US">
+   <title>CreateMaaSModelRefRequest</title>
+   <refbody>
+      <section id="description">
+         <p>Request body for creating a new MaaSModelRef resource</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name for the MaaSModelRef resource</p><p>Example: <codeph>granite-3-8b-instruct</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Namespace for the MaaSModelRef resource</p><p>Example: <codeph>maas-models</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRef</codeph></stentry>
+               <stentry><xref href="ModelReference.dita" type="reference">ModelReference</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>endpointOverride</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional endpoint URL override</p><p>Example: <codeph/></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>uid</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>UID of the OwnerReference Resource</p><p>Example: <codeph/></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name stored as openshift.io/display-name annotation</p><p>Example: <codeph>Granite 3 8B Instruct</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable description stored as openshift.io/description annotation</p><p>Example: <codeph>A high-performance instruction-tuned language model</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelCapabilities</codeph></stentry>
+               <stentry>array of string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Model capability tags copied from the opendatahub.io/model-capabilities annotation on the source LLMInferenceService (e.g. text-generation, vision). Omit or leave empty when the annotation is absent.</p><p>Constraints: maximum items 50</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "granite-3-8b-instruct",
+  "namespace": "maas-models",
+  "modelRef": {
+    "kind": "LLMInferenceService",
+    "name": "llama-2-7b-chat"
+  },
+  "endpointOverride": "",
+  "uid": "",
+  "displayName": "Granite 3 8B Instruct",
+  "description": "A high-performance instruction-tuned language model",
+  "modelCapabilities": ["text-generation", "vision"]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/createMaaSModelRef.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

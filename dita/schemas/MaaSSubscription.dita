@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="MaaSSubscription" xml:lang="en-US">
+   <title>MaaSSubscription</title>
+   <refbody>
+      <section id="description">
+         <p>BFF representation of a MaaSSubscription Kubernetes custom resource</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name of the MaaSSubscription resource (metadata.name)</p><p>Example: <codeph>premium-team-sub</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Display name for the subscription (from openshift.io/display-name annotation)</p><p>Example: <codeph>Premium Team Subscription</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Description of the subscription (from openshift.io/description annotation)</p><p>Example: <codeph>This subscription is for the premium team</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Namespace of the MaaSSubscription resource</p><p>Example: <codeph>maas-system</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Current phase of the subscription (from status)</p><p>Allowed values: <codeph>Pending</codeph>, <codeph>Active</codeph>, <codeph>Failed</codeph></p><p>Example: <codeph>Active</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>statusMessage</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable status message from the Ready condition in status.conditions</p><p>Example: <codeph>successfully reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Reason from the Ready condition in status.conditions</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>status</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Status from the Ready condition in status.conditions (e.g. True, False, Unknown)</p><p>Example: <codeph>True</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>conditionType</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Condition type from the Ready condition in status.conditions</p><p>Example: <codeph>Ready</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>lastTransitionTime</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>lastTransitionTime from the Ready condition in status.conditions</p><p>Example: <codeph>2026-01-01T00:00:00Z</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferencePriority</codeph></stentry>
+               <stentry>integer (int32)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Subscription inference priority (higher = higher priority). Omitted when unset; the scheduler applies default 0.</p><p>Example: <codeph>10</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferenceObjectivesReady</codeph></stentry>
+               <stentry><xref href="ConditionSummary.dita" type="reference">ConditionSummary</xref></stentry>
+               <stentry>No</stentry>
+               <stentry><p>InferenceObjectivesReady condition from status.conditions when present (only written by the controller when inferencePriority is set).</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferenceObjectivesReady.type</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Condition type</p><p>Example: <codeph>InferenceObjectivesReady</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferenceObjectivesReady.status</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Condition status (True, False, Unknown)</p><p>Example: <codeph>True</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferenceObjectivesReady.reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Machine-readable reason</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferenceObjectivesReady.message</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable message</p><p>Example: <codeph>Inference objectives are ready</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inferenceObjectivesReady.lastTransitionTime</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>When the condition last transitioned</p><p>Example: <codeph>2026-01-01T00:00:00Z</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>owner</codeph></stentry>
+               <stentry><xref href="OwnerSpec.dita" type="reference">OwnerSpec</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRefs</codeph></stentry>
+               <stentry>array of <xref href="ModelSubscriptionRef.dita" type="reference">ModelSubscriptionRef</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Models included in this subscription with per-model rate limits and optional read-only inference status from flowControlStatuses</p><p>Constraints: minimum items 1</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>tokenMetadata</codeph></stentry>
+               <stentry><xref href="TokenMetadata.dita" type="reference">TokenMetadata</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>creationTimestamp</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>When the resource was created</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>deletionTimestamp</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>When set, the subscription is marked for deletion (Kubernetes metadata.deletionTimestamp)</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "premium-team-sub",
+  "displayName": "Premium Team Subscription",
+  "description": "This subscription is for the premium team",
+  "namespace": "maas-system",
+  "phase": "Active",
+  "statusMessage": "successfully reconciled",
+  "reason": "Reconciled",
+  "status": "True",
+  "conditionType": "Ready",
+  "lastTransitionTime": "2026-01-01T00:00:00Z",
+  "inferencePriority": 10,
+  "inferenceObjectivesReady": {
+    "type": "InferenceObjectivesReady",
+    "status": "True",
+    "reason": "Reconciled",
+    "message": "Inference objectives are ready",
+    "lastTransitionTime": "2026-01-01T00:00:00Z"
+  },
+  "owner": {
+    "groups": [
+      {
+        "name": "premium-users"
+      }
+    ]
+  },
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models",
+      "tokenRateLimits": [
+        {
+          "limit": 100000,
+          "window": "24h"
+        }
+      ],
+      "billingRate": {
+        "perToken": "0.0001"
+      },
+      "objectiveName": "maas-models-as-a-service-gold-maas-model-user-inference-pool-a1b2c3d4e5",
+      "targetPool": "maas-model-user-inference-pool",
+      "ready": true,
+      "reason": "ObjectiveReconciled",
+      "message": "InferenceObjective sets priority 10"
+    }
+  ],
+  "tokenMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering",
+    "labels": {
+      "key": "string"
+    }
+  },
+  "creationTimestamp": "2024-01-31T09:30:00Z",
+  "deletionTimestamp": "2024-01-31T09:30:00Z"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/listAllSubscriptions.dita" type="reference"/>
+         <link href="CreateSubscriptionResponse.dita" type="reference"/>
+         <link href="SubscriptionInfoResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

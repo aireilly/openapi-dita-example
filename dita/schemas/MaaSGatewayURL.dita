@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="MaaSGatewayURL" xml:lang="en-US">
+   <title>MaaSGatewayURL</title>
+   <refbody>
+      <section id="description">
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>url</codeph></stentry>
+               <stentry>string (uri)</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Externally reachable MaaS API base URL, including /maas-api.</p><p>Example: <codeph>https://maas.apps.example.com/maas-api</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "url": "https://maas.apps.example.com/maas-api"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/getMaaSGatewayURL.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

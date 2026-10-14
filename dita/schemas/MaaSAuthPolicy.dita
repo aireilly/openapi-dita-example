@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="MaaSAuthPolicy" xml:lang="en-US">
+   <title>MaaSAuthPolicy</title>
+   <refbody>
+      <section id="description">
+         <p>BFF representation of a MaaSAuthPolicy Kubernetes custom resource</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name of the MaaSAuthPolicy resource</p><p>Example: <codeph>premium-team-sub-policy</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Namespace of the MaaSAuthPolicy resource</p><p>Example: <codeph>maas-system</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name for the policy</p><p>Example: <codeph>Premium Team Policy</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Description of the policy</p><p>Example: <codeph>High-priority access policy for the premium team.</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Current phase of the auth policy (from status)</p><p>Allowed values: <codeph>Pending</codeph>, <codeph>Active</codeph>, <codeph>Failed</codeph></p><p>Example: <codeph>Active</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>statusMessage</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable status message from the Ready condition in status.conditions</p><p>Example: <codeph>successfully reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Reason from the Ready condition in status.conditions</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>status</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Status from the Ready condition in status.conditions (e.g. True, False, Unknown)</p><p>Example: <codeph>True</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>conditionType</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Condition type from the Ready condition in status.conditions</p><p>Example: <codeph>Ready</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>lastTransitionTime</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>lastTransitionTime from the Ready condition in status.conditions</p><p>Example: <codeph>2026-01-01T00:00:00Z</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>creationTimestamp</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Timestamp when the policy was created</p><p>Example: <codeph>2025-03-01T10:00:00Z</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRefs</codeph></stentry>
+               <stentry>array of <xref href="ModelRef.dita" type="reference">ModelRef</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Models this policy grants access to</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>subjects</codeph></stentry>
+               <stentry><xref href="SubjectSpec.dita" type="reference">SubjectSpec</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>meteringMetadata</codeph></stentry>
+               <stentry><xref href="TokenMetadata.dita" type="reference">TokenMetadata</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>deletionTimestamp</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>When set, the policy is marked for deletion (Kubernetes metadata.deletionTimestamp)</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "premium-team-sub-policy",
+  "namespace": "maas-system",
+  "displayName": "Premium Team Policy",
+  "description": "High-priority access policy for the premium team.",
+  "phase": "Active",
+  "statusMessage": "successfully reconciled",
+  "reason": "Reconciled",
+  "status": "True",
+  "conditionType": "Ready",
+  "lastTransitionTime": "2026-01-01T00:00:00Z",
+  "creationTimestamp": "2025-03-01T10:00:00Z",
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models"
+    }
+  ],
+  "subjects": {
+    "groups": [
+      {
+        "name": "premium-users"
+      }
+    ]
+  },
+  "meteringMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering",
+    "labels": {
+      "key": "string"
+    }
+  },
+  "deletionTimestamp": "2024-01-31T09:30:00Z"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/listAllPolicies.dita" type="reference"/>
+         <link href="../operations/createPolicy.dita" type="reference"/>
+         <link href="../operations/updatePolicy.dita" type="reference"/>
+         <link href="CreateSubscriptionResponse.dita" type="reference"/>
+         <link href="SubscriptionInfoResponse.dita" type="reference"/>
+         <link href="PolicyInfoResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

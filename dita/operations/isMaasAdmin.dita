@@ -1,0 +1,102 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="isMaasAdmin" xml:lang="en-US">
+   <title>Check MaaS Admin Access</title>
+   <prolog>
+      <metadata>
+         <othermeta name="http-method" content="GET"/>
+         <othermeta name="path" content="/api/v1/is-maas-admin"/>
+         <othermeta name="operationId" content="isMaasAdmin"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>GET /api/v1/is-maas-admin</b></p>
+         <codeblock outputclass="language-http">GET /maas/api/v1/is-maas-admin</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Checks whether the requesting user has MaaS admin privileges by performing a SelfSubjectAccessReview against the <codeph>maasauthpolicies</codeph> resource in the <codeph>models-as-a-service</codeph> namespace. Returns <codeph>allowed: true</codeph> only for users who can create MaaSAuthPolicy resources (i.e. cluster/MaaS admins).
+Token resolution priority:</p>
+         <ol>
+            <li><p><codeph>Authorization: Bearer &lt;token&gt;</codeph> — used by the ODH dashboard backend;
+correctly substituted with the impersonated user's token when the ODH
+dev impersonation feature (<codeph>DEV_IMPERSONATE_USER</codeph>) is active.</p></li>
+            <li><p><codeph>x-forwarded-access-token</codeph> — fallback for standalone federated dev mode
+where the rspack proxy injects the real user's token directly.</p></li>
+         </ol>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>Access check result</p></stentry>
+               <stentry><p>object</p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>400</codeph> Bad Request</stentry>
+               <stentry><p>Bad Request (missing authentication token)</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+         </simpletable>
+         <p><b>200 OK response body</b></p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>data</codeph></stentry>
+               <stentry>object</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>data.allowed</codeph></stentry>
+               <stentry>boolean</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Whether the user has MaaS admin access</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X GET "/maas/api/v1/is-maas-admin" \
+  -H "Authorization: Bearer $TOKEN"</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "data": {
+    "allowed": true
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/ErrorResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="UpdateSubscriptionRequest" xml:lang="en-US">
+   <title>UpdateSubscriptionRequest</title>
+   <refbody>
+      <section id="description">
+         <p>Request body for updating an existing subscription (MaaSSubscription only; auth policy is not managed during update)</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Updated display name for the subscription</p><p>Example: <codeph>Premium Team Subscription</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Updated description for the subscription</p><p>Example: <codeph>This subscription is for the premium team</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>owner</codeph></stentry>
+               <stentry><xref href="OwnerSpec.dita" type="reference">OwnerSpec</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRefs</codeph></stentry>
+               <stentry>array of <xref href="ModelSubscriptionRef.dita" type="reference">ModelSubscriptionRef</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Updated models for this subscription</p><p>Constraints: minimum items 1</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>tokenMetadata</codeph></stentry>
+               <stentry><xref href="TokenMetadata.dita" type="reference">TokenMetadata</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>inferencePriority</codeph></stentry>
+               <stentry>integer (int32)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional updated subscription inference priority (signed int32). Omitted when unset; the scheduler applies default 0.</p><p>Example: <codeph>20</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "displayName": "Premium Team Subscription",
+  "description": "This subscription is for the premium team",
+  "owner": {
+    "groups": [
+      {
+        "name": "premium-users"
+      }
+    ]
+  },
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models",
+      "tokenRateLimits": [
+        {
+          "limit": 100000,
+          "window": "24h"
+        }
+      ],
+      "billingRate": {
+        "perToken": "0.0001"
+      },
+      "objectiveName": "maas-models-as-a-service-gold-maas-model-user-inference-pool-a1b2c3d4e5",
+      "targetPool": "maas-model-user-inference-pool",
+      "ready": true,
+      "reason": "ObjectiveReconciled",
+      "message": "InferenceObjective sets priority 10"
+    }
+  ],
+  "tokenMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering",
+    "labels": {
+      "key": "string"
+    }
+  },
+  "inferencePriority": 20
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/updateSubscription.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

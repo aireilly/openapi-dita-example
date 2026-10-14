@@ -1,0 +1,136 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ExternalModelSummary" xml:lang="en-US">
+   <title>ExternalModelSummary</title>
+   <refbody>
+      <section id="description">
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name (from openshift.io/display-name annotation)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Description (from openshift.io/description annotation)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>ModelName is the client-facing model name used in inference request bodies. Clients send this value in the "model" field of chat completion requests. Defaults to metadata.name if not set. Use this field when the desired model name contains characters not allowed in Kubernetes resource names (dots, colons, slashes, uppercase).</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>providerRefs</codeph></stentry>
+               <stentry>array of <xref href="ProviderRef.dita" type="reference">ProviderRef</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>statusMessage</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable status message from the Ready condition in status.conditions</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Reason from the Ready condition in status.conditions</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>maaSModelRef</codeph></stentry>
+               <stentry><xref href="ExternalModelMaaSModelRefStatus.dita" type="reference">ExternalModelMaaSModelRefStatus</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "string",
+  "namespace": "string",
+  "displayName": "string",
+  "description": "string",
+  "modelName": "string",
+  "providerRefs": [
+    {
+      "providerName": "string",
+      "weight": 0,
+      "apiFormat": "string",
+      "path": "string",
+      "targetModel": "string",
+      "config": {
+        "key": "string"
+      },
+      "authMechanism": "apikey",
+      "credentialSecretRef": "string",
+      "provider": {
+        "displayName": "string",
+        "description": "string",
+        "endpointUrl": "string",
+        "authMechanism": "apikey",
+        "credentialSecretRef": "string",
+        "provider": "string",
+        "config": {
+          "key": "string"
+        },
+        "phase": "string",
+        "statusMessage": "string",
+        "reason": "Reconciled"
+      }
+    }
+  ],
+  "phase": "string",
+  "statusMessage": "string",
+  "reason": "Reconciled",
+  "maaSModelRef": {
+    "phase": "string",
+    "statusMessage": "string",
+    "reason": "Reconciled",
+    "endpoint": "string",
+    "governanceAttached": true
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/listExternalModels.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ExternalProviderDetails" xml:lang="en-US">
+   <title>ExternalProviderDetails</title>
+   <refbody>
+      <section id="description">
+         <p>ExternalProvider fields not present on the ExternalModel providerRef</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>endpointUrl</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>FQDN of the external provider with no scheme or path (e.g. api.openai.com)</p><p>Constraints: minimum length 1; maximum length 253; pattern <codeph>^[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?)+$</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>authMechanism</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Allowed values: <codeph>apikey</codeph>, <codeph>sigv4</codeph>, <codeph>oauth2</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>credentialSecretRef</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Name of the Secret holding provider credentials (spec.auth.secretRef.name)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>provider</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Provider identifier (spec.provider)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>config</codeph></stentry>
+               <stentry>map of string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>statusMessage</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable status message from the Ready condition in status.conditions</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Reason from the Ready condition in status.conditions</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "displayName": "string",
+  "description": "string",
+  "endpointUrl": "string",
+  "authMechanism": "apikey",
+  "credentialSecretRef": "string",
+  "provider": "string",
+  "config": {
+    "key": "string"
+  },
+  "phase": "string",
+  "statusMessage": "string",
+  "reason": "Reconciled"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="ProviderRef.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

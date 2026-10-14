@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="SubscriptionListItem" xml:lang="en-US">
+   <title>SubscriptionListItem</title>
+   <refbody>
+      <section id="description">
+         <p>Sanitised subscription view returned by the maas-api passthrough endpoint, safe to expose to basic users</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>subscription_id_header</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Subscription name to use in the X-MaaS-Subscription header</p><p>Example: <codeph>premium-team-sub</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>subscription_description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Human-readable description (falls back to display-name, then name)</p><p>Example: <codeph>Premium Team Subscription</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>display_name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Display name from the openshift.io/display-name annotation</p><p>Example: <codeph>Premium Team</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>inference_priority</codeph></stentry>
+               <stentry>integer (int32)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Subscription inference priority (higher = higher priority). Omitted when unset; the scheduler applies default 0.</p><p>Example: <codeph>10</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>model_refs</codeph></stentry>
+               <stentry>array of <xref href="ModelRefInfo.dita" type="reference">ModelRefInfo</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Model references with rate limits</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>organization_id</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Organization identifier for metering and billing</p><p>Example: <codeph>premium-org</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>cost_center</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Cost center for usage attribution</p><p>Example: <codeph>engineering</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>key_count</codeph></stentry>
+               <stentry>integer (int32)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Number of API keys associated with this subscription for the current user</p><p>Example: <codeph>10</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>labels</codeph></stentry>
+               <stentry>map of string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Additional labels for tracking and metrics</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "subscription_id_header": "premium-team-sub",
+  "subscription_description": "Premium Team Subscription",
+  "display_name": "Premium Team",
+  "inference_priority": 10,
+  "model_refs": [
+    {
+      "name": "granite-3-8b-instruct",
+      "display_name": "Granite 3 8B Instruct",
+      "source": "internal",
+      "description": "Granite 3 8B Instruct is a large language model that is used for advanced tasks.",
+      "namespace": "maas-models",
+      "token_rate_limits": [
+        {
+          "limit": 100000,
+          "window": "24h"
+        }
+      ],
+      "billing_rate": {
+        "per_token": "0.001"
+      }
+    }
+  ],
+  "organization_id": "premium-org",
+  "cost_center": "engineering",
+  "key_count": 10,
+  "labels": {
+    "env": "production"
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/listSubscriptions.dita" type="reference"/>
+         <link href="../operations/getSubscription.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

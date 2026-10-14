@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ApiKeyConfig" xml:lang="en-US">
+   <title>ApiKeyConfig</title>
+   <refbody>
+      <section id="description">
+         <p>API key configuration limits from maas-api</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>max_expiration_days</codeph></stentry>
+               <stentry>integer</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Maximum expiration in days for regular API keys</p><p>Example: <codeph>90</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>ephemeral_max_expiration</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Maximum expiration for ephemeral API keys</p><p>Example: <codeph>1h</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "max_expiration_days": 90,
+  "ephemeral_max_expiration": "1h"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/getApiKeyConfig.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

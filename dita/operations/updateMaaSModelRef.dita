@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="updateMaaSModelRef" xml:lang="en-US">
+   <title>Update a MaaSModelRef</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>maasmodelrefs</keyword>
+         </keywords>
+         <othermeta name="http-method" content="PUT"/>
+         <othermeta name="path" content="/api/v1/maasmodel/{namespace}/{name}"/>
+         <othermeta name="operationId" content="updateMaaSModelRef"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>PUT /api/v1/maasmodel/{namespace}/{name}</b></p>
+         <codeblock outputclass="language-http">PUT /maas/api/v1/maasmodel/{namespace}/{name}</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Updates an existing MaaSModelRef Kubernetes custom resource.
+K8s calls: PUT /k8s/v1/maasmodelref/:namespace/:name</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="parameters">
+         <title>Parameters</title>
+         <simpletable relcolwidth="2* 1* 2* 1* 5*">
+            <sthead>
+               <stentry>Name</stentry>
+               <stentry>In</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>path</stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Namespace of the MaaSModelRef</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>path</stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name of the MaaSModelRef to update</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <section id="request-body">
+         <title>Request body</title>
+         <p>Required.</p>
+         <p>Content type: <codeph>application/json</codeph></p>
+         <p>Schema: <xref href="../schemas/UpdateMaaSModelRefRequest.dita" type="reference">UpdateMaaSModelRefRequest</xref></p>
+         <p>Example:</p>
+         <codeblock outputclass="language-json">{
+  "modelRef": {
+    "kind": "LLMInferenceService",
+    "name": "granite-3-8b-instruct"
+  },
+  "endpointOverride": "https://custom-endpoint.example.com"
+}</codeblock>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>MaaSModelRef updated successfully</p></stentry>
+               <stentry><p><xref href="../schemas/MaaSModelRefSummary.dita" type="reference">MaaSModelRefSummary</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>400</codeph> Bad Request</stentry>
+               <stentry><p>Bad Request. Invalid update specification.</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>401</codeph> Unauthorized</stentry>
+               <stentry><p>Unauthorized</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>404</codeph> Not Found</stentry>
+               <stentry><p>MaaSModelRef not found</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X PUT "/maas/api/v1/maasmodel/{namespace}/{name}" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "modelRef": {
+    "kind": "LLMInferenceService",
+    "name": "granite-3-8b-instruct"
+  },
+  "endpointOverride": "https://custom-endpoint.example.com"
+}'</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "name": "granite-3-8b-instruct",
+  "namespace": "maas-models",
+  "modelRef": {
+    "kind": "LLMInferenceService",
+    "name": "granite-3-8b-instruct"
+  },
+  "phase": "Ready",
+  "endpoint": "https://custom-endpoint.example.com"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/UpdateMaaSModelRefRequest.dita" type="reference"/>
+         <link href="../schemas/MaaSModelRefSummary.dita" type="reference"/>
+         <link href="../schemas/ErrorResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ExternalModelMaaSModelRefStatus" xml:lang="en-US">
+   <title>ExternalModelMaaSModelRefStatus</title>
+   <refbody>
+      <section id="description">
+         <p>Companion MaaSModelRef status (list response only)</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>statusMessage</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable status message from the Ready condition in status.conditions</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Reason from the Ready condition in status.conditions</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>endpoint</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Published MaaS endpoint URL (status.endpoint)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>governanceAttached</codeph></stentry>
+               <stentry>boolean</stentry>
+               <stentry>No</stentry>
+               <stentry><p>True when the companion MaaSModelRef has status.conditions type=GovernanceAttached with status=True (active subscription + auth policy pairing).</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "phase": "string",
+  "statusMessage": "string",
+  "reason": "Reconciled",
+  "endpoint": "string",
+  "governanceAttached": true
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="ExternalModelSummary.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

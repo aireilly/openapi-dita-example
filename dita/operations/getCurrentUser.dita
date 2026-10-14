@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="getCurrentUser" xml:lang="en-US">
+   <title>Get Current User</title>
+   <prolog>
+      <metadata>
+         <othermeta name="http-method" content="GET"/>
+         <othermeta name="path" content="/api/v1/user"/>
+         <othermeta name="operationId" content="getCurrentUser"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>GET /api/v1/user</b></p>
+         <codeblock outputclass="language-http">GET /maas/api/v1/user</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Returns information about the currently authenticated user</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>User information</p></stentry>
+               <stentry><p>object</p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>400</codeph> Bad Request</stentry>
+               <stentry><p>Bad Request (missing identity)</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>401</codeph> Unauthorized</stentry>
+               <stentry><p>Unauthorized</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+         </simpletable>
+         <p><b>200 OK response body</b></p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>data</codeph></stentry>
+               <stentry><xref href="../schemas/User.dita" type="reference">User</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X GET "/maas/api/v1/user" \
+  -H "Authorization: Bearer $TOKEN"</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "data": {
+    "userId": "string",
+    "clusterAdmin": true
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/User.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

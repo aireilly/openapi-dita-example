@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="SubjectSpec" xml:lang="en-US">
+   <title>SubjectSpec</title>
+   <refbody>
+      <section id="description">
+         <p>Defines subjects (groups) that have access</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>groups</codeph></stentry>
+               <stentry>array of <xref href="GroupReference.dita" type="reference">GroupReference</xref></stentry>
+               <stentry>No</stentry>
+               <stentry><p>Kubernetes group names</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "groups": [
+    {
+      "name": "premium-users"
+    }
+  ]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="MaaSAuthPolicy.dita" type="reference"/>
+         <link href="CreatePolicyRequest.dita" type="reference"/>
+         <link href="UpdatePolicyRequest.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

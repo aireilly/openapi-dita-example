@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="createExternalModel" xml:lang="en-US">
+   <title>Create an ExternalModel</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>externalmodels</keyword>
+         </keywords>
+         <othermeta name="http-method" content="POST"/>
+         <othermeta name="path" content="/api/v1/externalmodel"/>
+         <othermeta name="operationId" content="createExternalModel"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>POST /api/v1/externalmodel</b></p>
+         <codeblock outputclass="language-http">POST /maas/api/v1/externalmodel</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Creates a new ExternalModel and its companion MaaSModelRef.</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="request-body">
+         <title>Request body</title>
+         <p>Required.</p>
+         <p>Content type: <codeph>application/json</codeph></p>
+         <p>Schema: <xref href="../schemas/CreateExternalModelRequest.dita" type="reference">CreateExternalModelRequest</xref></p>
+         <p>Example:</p>
+         <codeblock outputclass="language-json">{
+  "name": "string",
+  "namespace": "string",
+  "displayName": "string",
+  "description": "string",
+  "modelName": "string",
+  "providerRefs": [
+    {
+      "providerName": "string",
+      "weight": 0,
+      "apiFormat": "string",
+      "path": "string",
+      "targetModel": "string",
+      "config": {
+        "key": "string"
+      },
+      "authMechanism": "apikey",
+      "credentialSecretRef": "string",
+      "provider": {
+        "displayName": "string",
+        "description": "string",
+        "endpointUrl": "string",
+        "authMechanism": "apikey",
+        "credentialSecretRef": "string",
+        "provider": "string",
+        "config": {
+          "key": "string"
+        },
+        "phase": "string",
+        "statusMessage": "string",
+        "reason": "Reconciled"
+      }
+    }
+  ]
+}</codeblock>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>201</codeph> Created</stentry>
+               <stentry><p>ExternalModel created</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X POST "/maas/api/v1/externalmodel" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "name": "string",
+  "namespace": "string",
+  "displayName": "string",
+  "description": "string",
+  "modelName": "string",
+  "providerRefs": [
+    {
+      "providerName": "string",
+      "weight": 0,
+      "apiFormat": "string",
+      "path": "string",
+      "targetModel": "string",
+      "config": {
+        "key": "string"
+      },
+      "authMechanism": "apikey",
+      "credentialSecretRef": "string",
+      "provider": {
+        "displayName": "string",
+        "description": "string",
+        "endpointUrl": "string",
+        "authMechanism": "apikey",
+        "credentialSecretRef": "string",
+        "provider": "string",
+        "config": {
+          "key": "string"
+        },
+        "phase": "string",
+        "statusMessage": "string",
+        "reason": "Reconciled"
+      }
+    }
+  ]
+}'</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/CreateExternalModelRequest.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

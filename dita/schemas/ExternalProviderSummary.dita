@@ -1,0 +1,105 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ExternalProviderSummary" xml:lang="en-US">
+   <title>ExternalProviderSummary</title>
+   <refbody>
+      <section id="description">
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name (from openshift.io/display-name annotation)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Description (from openshift.io/description annotation)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>endpointUrl</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>FQDN of the external provider with no scheme or path (e.g. api.openai.com)</p><p>Constraints: minimum length 1; maximum length 253; pattern <codeph>^[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?)+$</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>authMechanism</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>ExternalProvider spec.auth.type (inference CRD)</p><p>Allowed values: <codeph>apikey</codeph>, <codeph>sigv4</codeph>, <codeph>oauth2</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>credentialSecretRef</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>provider</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>config</codeph></stentry>
+               <stentry>map of string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional provider-specific configuration key-value pairs (spec.config)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>phase</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "string",
+  "namespace": "string",
+  "displayName": "string",
+  "description": "string",
+  "endpointUrl": "string",
+  "authMechanism": "apikey",
+  "credentialSecretRef": "string",
+  "provider": "string",
+  "config": {
+    "key": "string"
+  },
+  "phase": "string"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/listExternalProviders.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

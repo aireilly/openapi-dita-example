@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ModelRefInfo" xml:lang="en-US">
+   <title>ModelRefInfo</title>
+   <refbody>
+      <section id="description">
+         <p>Model reference with rate limit information from the passthrough endpoint</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name of the MaaSModelRef</p><p>Example: <codeph>granite-3-8b-instruct</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>display_name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name of the model (from openshift.io/display-name annotation)</p><p>Example: <codeph>Granite 3 8B Instruct</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>source</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Model source identifier (internal or external)</p><p>Example: <codeph>internal</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable description of the model</p><p>Example: <codeph>Granite 3 8B Instruct is a large language model that is used for advanced tasks.</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Namespace where the MaaSModelRef lives</p><p>Example: <codeph>maas-models</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>token_rate_limits</codeph></stentry>
+               <stentry>array of object</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>token_rate_limits[].limit</codeph></stentry>
+               <stentry>integer (int64)</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Maximum number of tokens allowed</p><p>Example: <codeph>100000</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>token_rate_limits[].window</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Time window (e.g., 1m, 1h, 24h)</p><p>Example: <codeph>24h</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>billing_rate</codeph></stentry>
+               <stentry>object</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>billing_rate.per_token</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Cost per token</p><p>Example: <codeph>0.001</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "granite-3-8b-instruct",
+  "display_name": "Granite 3 8B Instruct",
+  "source": "internal",
+  "description": "Granite 3 8B Instruct is a large language model that is used for advanced tasks.",
+  "namespace": "maas-models",
+  "token_rate_limits": [
+    {
+      "limit": 100000,
+      "window": "24h"
+    }
+  ],
+  "billing_rate": {
+    "per_token": "0.001"
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="SubscriptionListItem.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

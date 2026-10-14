@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="bulkRevokeApiKeys" xml:lang="en-US">
+   <title>Bulk revoke API keys for a user</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>api-keys</keyword>
+         </keywords>
+         <othermeta name="http-method" content="POST"/>
+         <othermeta name="path" content="/api/v1/api-keys/bulk-revoke"/>
+         <othermeta name="operationId" content="bulkRevokeApiKeys"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>POST /api/v1/api-keys/bulk-revoke</b></p>
+         <codeblock outputclass="language-http">POST /maas/api/v1/api-keys/bulk-revoke</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Revokes all active API keys for a specific user. Regular users can only bulk revoke their own keys. Admins can bulk revoke any user's keys.</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="request-body">
+         <title>Request body</title>
+         <p>Required.</p>
+         <p>Content type: <codeph>application/json</codeph></p>
+         <p>Schema: object</p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>username</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Username whose keys should be revoked</p></stentry>
+            </strow>
+         </simpletable>
+         <p>Example:</p>
+         <codeblock outputclass="language-json">{
+  "username": "alice"
+}</codeblock>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>OK response.</p></stentry>
+               <stentry><p>object</p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>400</codeph> Bad Request</stentry>
+               <stentry><p>Bad Request. Invalid request.</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>401</codeph> Unauthorized</stentry>
+               <stentry><p>Unauthorized response.</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>403</codeph> Forbidden</stentry>
+               <stentry><p>Forbidden. User trying to revoke another user's keys.</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+         </simpletable>
+         <p><b>200 OK response body</b></p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>revokedCount</codeph></stentry>
+               <stentry>integer</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Number of keys that were revoked</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>message</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Success message</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X POST "/maas/api/v1/api-keys/bulk-revoke" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "username": "alice"
+}'</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "revokedCount": 5,
+  "message": "Successfully revoked 5 active API key(s) for user alice"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/ErrorResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

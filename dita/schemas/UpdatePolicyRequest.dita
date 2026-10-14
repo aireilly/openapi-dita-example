@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="UpdatePolicyRequest" xml:lang="en-US">
+   <title>UpdatePolicyRequest</title>
+   <refbody>
+      <section id="description">
+         <p>Request body for updating an existing MaaSAuthPolicy resource</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable display name (stored as openshift.io/display-name annotation)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Description of the policy (stored as openshift.io/description annotation)</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRefs</codeph></stentry>
+               <stentry>array of <xref href="ModelRef.dita" type="reference">ModelRef</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Updated models for this policy</p><p>Constraints: minimum items 1</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>subjects</codeph></stentry>
+               <stentry><xref href="SubjectSpec.dita" type="reference">SubjectSpec</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>meteringMetadata</codeph></stentry>
+               <stentry><xref href="TokenMetadata.dita" type="reference">TokenMetadata</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "displayName": "string",
+  "description": "string",
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models"
+    }
+  ],
+  "subjects": {
+    "groups": [
+      {
+        "name": "premium-users"
+      }
+    ]
+  },
+  "meteringMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering",
+    "labels": {
+      "key": "string"
+    }
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/updatePolicy.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

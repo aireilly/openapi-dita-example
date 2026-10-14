@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="listExternalProviders" xml:lang="en-US">
+   <title>List ExternalProviders</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>externalproviders</keyword>
+         </keywords>
+         <othermeta name="http-method" content="GET"/>
+         <othermeta name="path" content="/api/v1/externalprovider"/>
+         <othermeta name="operationId" content="listExternalProviders"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>GET /api/v1/externalprovider</b></p>
+         <codeblock outputclass="language-http">GET /maas/api/v1/externalprovider</codeblock>
+      </refsyn>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="parameters">
+         <title>Parameters</title>
+         <simpletable relcolwidth="2* 1* 2* 1* 5*">
+            <sthead>
+               <stentry>Name</stentry>
+               <stentry>In</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>query</stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>ExternalProvider list</p></stentry>
+               <stentry><p>object</p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+         </simpletable>
+         <p><b>200 OK response body</b></p>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>data</codeph></stentry>
+               <stentry>array of <xref href="../schemas/ExternalProviderSummary.dita" type="reference">ExternalProviderSummary</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X GET "/maas/api/v1/externalprovider?namespace=NAMESPACE" \
+  -H "Authorization: Bearer $TOKEN"</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "data": [
+    {
+      "name": "string",
+      "namespace": "string",
+      "displayName": "string",
+      "description": "string",
+      "endpointUrl": "string",
+      "authMechanism": "apikey",
+      "credentialSecretRef": "string",
+      "provider": "string",
+      "config": {
+        "key": "string"
+      },
+      "phase": "string"
+    }
+  ]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/ExternalProviderSummary.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

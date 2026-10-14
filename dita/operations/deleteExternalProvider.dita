@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="deleteExternalProvider" xml:lang="en-US">
+   <title>Delete an ExternalProvider</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>externalproviders</keyword>
+         </keywords>
+         <othermeta name="http-method" content="DELETE"/>
+         <othermeta name="path" content="/api/v1/externalprovider/{namespace}/{name}"/>
+         <othermeta name="operationId" content="deleteExternalProvider"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>DELETE /api/v1/externalprovider/{namespace}/{name}</b></p>
+         <codeblock outputclass="language-http">DELETE /maas/api/v1/externalprovider/{namespace}/{name}</codeblock>
+      </refsyn>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="parameters">
+         <title>Parameters</title>
+         <simpletable relcolwidth="2* 1* 2* 1* 5*">
+            <sthead>
+               <stentry>Name</stentry>
+               <stentry>In</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>path</stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>path</stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+         </simpletable>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>ExternalProvider deleted</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X DELETE "/maas/api/v1/externalprovider/{namespace}/{name}" \
+  -H "Authorization: Bearer $TOKEN"</codeblock>
+      </example>
+   </refbody>
+</reference>

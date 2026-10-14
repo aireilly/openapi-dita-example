@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="CreateSubscriptionRequest" xml:lang="en-US">
+   <title>CreateSubscriptionRequest</title>
+   <refbody>
+      <section id="description">
+         <p>Request body for creating a new subscription. Optionally creates a MaaSAuthPolicy if createAuthPolicy is true. The namespace is determined by server configuration (MAAS_SUBSCRIPTION_NAMESPACE).</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name for the MaaSSubscription resource</p><p>Example: <codeph>premium-team-sub</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional description providing context about the subscription</p><p>Example: <codeph>This subscription is for the premium team</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional display name for the subscription</p><p>Example: <codeph>Premium Team Subscription</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>owner</codeph></stentry>
+               <stentry><xref href="OwnerSpec.dita" type="reference">OwnerSpec</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRefs</codeph></stentry>
+               <stentry>array of <xref href="ModelSubscriptionRef.dita" type="reference">ModelSubscriptionRef</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Models to include in this subscription</p><p>Constraints: minimum items 1</p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>tokenMetadata</codeph></stentry>
+               <stentry><xref href="TokenMetadata.dita" type="reference">TokenMetadata</xref></stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>inferencePriority</codeph></stentry>
+               <stentry>integer (int32)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional subscription inference priority (signed int32). Omitted when unset; the scheduler applies default 0.</p><p>Example: <codeph>10</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>createAuthPolicy</codeph></stentry>
+               <stentry>boolean</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Whether to also create a MaaSAuthPolicy for this subscription</p><p>Default: <codeph>false</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "premium-team-sub",
+  "description": "This subscription is for the premium team",
+  "displayName": "Premium Team Subscription",
+  "owner": {
+    "groups": [
+      {
+        "name": "premium-users"
+      }
+    ]
+  },
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models",
+      "tokenRateLimits": [
+        {
+          "limit": 100000,
+          "window": "24h"
+        }
+      ],
+      "billingRate": {
+        "perToken": "0.0001"
+      },
+      "objectiveName": "maas-models-as-a-service-gold-maas-model-user-inference-pool-a1b2c3d4e5",
+      "targetPool": "maas-model-user-inference-pool",
+      "ready": true,
+      "reason": "ObjectiveReconciled",
+      "message": "InferenceObjective sets priority 10"
+    }
+  ],
+  "tokenMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering",
+    "labels": {
+      "key": "string"
+    }
+  },
+  "inferencePriority": 10,
+  "createAuthPolicy": false
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/createSubscription.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

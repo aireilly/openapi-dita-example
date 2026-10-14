@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ConditionSummary" xml:lang="en-US">
+   <title>ConditionSummary</title>
+   <refbody>
+      <section id="description">
+         <p>Kubernetes-style condition summary exposed to the UI</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>type</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Condition type</p><p>Example: <codeph>InferenceObjectivesReady</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>status</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Condition status (True, False, Unknown)</p><p>Example: <codeph>True</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>reason</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Machine-readable reason</p><p>Example: <codeph>Reconciled</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>message</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Human-readable message</p><p>Example: <codeph>Inference objectives are ready</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>lastTransitionTime</codeph></stentry>
+               <stentry>string (date-time)</stentry>
+               <stentry>No</stentry>
+               <stentry><p>When the condition last transitioned</p><p>Example: <codeph>2026-01-01T00:00:00Z</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "type": "InferenceObjectivesReady",
+  "status": "True",
+  "reason": "Reconciled",
+  "message": "Inference objectives are ready",
+  "lastTransitionTime": "2026-01-01T00:00:00Z"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="MaaSSubscription.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

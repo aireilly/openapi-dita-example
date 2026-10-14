@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="PolicyInfoResponse" xml:lang="en-US">
+   <title>PolicyInfoResponse</title>
+   <refbody>
+      <section id="description">
+         <p>Detailed policy information with related model ref summaries</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>policy</codeph></stentry>
+               <stentry><xref href="MaaSAuthPolicy.dita" type="reference">MaaSAuthPolicy</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>modelRefs</codeph></stentry>
+               <stentry>array of <xref href="MaaSModelRefSummary.dita" type="reference">MaaSModelRefSummary</xref></stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>MaaSModelRef resources referenced by this policy</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "policy": {
+    "name": "premium-team-sub-policy",
+    "namespace": "maas-system",
+    "displayName": "Premium Team Policy",
+    "description": "High-priority access policy for the premium team.",
+    "phase": "Active",
+    "statusMessage": "successfully reconciled",
+    "reason": "Reconciled",
+    "status": "True",
+    "conditionType": "Ready",
+    "lastTransitionTime": "2026-01-01T00:00:00Z",
+    "creationTimestamp": "2025-03-01T10:00:00Z",
+    "modelRefs": [
+      {
+        "name": "llama-2-7b-chat",
+        "namespace": "maas-models"
+      }
+    ],
+    "subjects": {
+      "groups": [
+        {
+          "name": "premium-users"
+        }
+      ]
+    },
+    "meteringMetadata": {
+      "organizationId": "org-123",
+      "costCenter": "engineering",
+      "labels": {
+        "key": "string"
+      }
+    },
+    "deletionTimestamp": "2024-01-31T09:30:00Z"
+  },
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models",
+      "displayName": "Granite 3 8B Instruct",
+      "description": "IBM Granite 3 8B instruction-tuned language model.",
+      "modelRef": {
+        "kind": "LLMInferenceService",
+        "name": "llama-2-7b-chat"
+      },
+      "phase": "Ready",
+      "statusMessage": "string",
+      "reason": "Reconciled",
+      "status": "True",
+      "conditionType": "Ready",
+      "lastTransitionTime": "2026-01-01T00:00:00Z",
+      "endpoint": "https://llama-2-7b-chat.example.com",
+      "modelCapabilities": ["text-generation", "vision"]
+    }
+  ]
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/getPolicyInfo.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

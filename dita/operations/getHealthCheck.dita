@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="getHealthCheck" xml:lang="en-US">
+   <title>Health Check</title>
+   <prolog>
+      <metadata>
+         <othermeta name="http-method" content="GET"/>
+         <othermeta name="path" content="/healthcheck"/>
+         <othermeta name="operationId" content="getHealthCheck"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>GET /healthcheck</b></p>
+         <codeblock outputclass="language-http">GET /maas/healthcheck</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Returns the health status of the service</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <p>No authentication required.</p>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>200</codeph> OK</stentry>
+               <stentry><p>Service is healthy</p></stentry>
+               <stentry><p><xref href="../schemas/HealthResponse.dita" type="reference">HealthResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X GET "/maas/healthcheck"</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>200</codeph> OK, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "status": "healthy"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/HealthResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

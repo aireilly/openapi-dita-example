@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE map
+  PUBLIC "-//OASIS//DTD DITA Map//EN" "map.dtd">
+<map xml:lang="en-US">
+   <title>MaaS BFF API</title>
+   <topicref href="overview.dita" type="concept"/>
+   <topichead>
+      <topicmeta>
+         <navtitle>models</navtitle>
+      </topicmeta>
+      <topicref href="operations/listModels.dita" type="reference"/>
+      <topicref href="operations/listAllMaasModels.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>gateway</navtitle>
+      </topicmeta>
+      <topicref href="operations/getMaaSGatewayURL.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>subscriptions</navtitle>
+      </topicmeta>
+      <topicref href="operations/listSubscriptions.dita" type="reference"/>
+      <topicref href="operations/getSubscription.dita" type="reference"/>
+      <topicref href="operations/listAllSubscriptions.dita" type="reference"/>
+      <topicref href="operations/getSubscriptionInfo.dita" type="reference"/>
+      <topicref href="operations/createSubscription.dita" type="reference"/>
+      <topicref href="operations/updateSubscription.dita" type="reference"/>
+      <topicref href="operations/deleteSubscription.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>api-keys</navtitle>
+      </topicmeta>
+      <topicref href="operations/createApiKey.dita" type="reference"/>
+      <topicref href="operations/getApiKeyConfig.dita" type="reference"/>
+      <topicref href="operations/searchApiKeys.dita" type="reference"/>
+      <topicref href="operations/bulkRevokeApiKeys.dita" type="reference"/>
+      <topicref href="operations/getApiKey.dita" type="reference"/>
+      <topicref href="operations/revokeApiKey.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>policies</navtitle>
+      </topicmeta>
+      <topicref href="operations/listAllPolicies.dita" type="reference"/>
+      <topicref href="operations/getPolicyInfo.dita" type="reference"/>
+      <topicref href="operations/createPolicy.dita" type="reference"/>
+      <topicref href="operations/updatePolicy.dita" type="reference"/>
+      <topicref href="operations/deletePolicy.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>yaml</navtitle>
+      </topicmeta>
+      <topicref href="operations/getResourceYaml.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>general</navtitle>
+      </topicmeta>
+      <topicref href="operations/listAllGroups.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>maasmodelrefs</navtitle>
+      </topicmeta>
+      <topicref href="operations/createMaaSModelRef.dita" type="reference"/>
+      <topicref href="operations/updateMaaSModelRef.dita" type="reference"/>
+      <topicref href="operations/deleteMaaSModelRef.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>externalmodels</navtitle>
+      </topicmeta>
+      <topicref href="operations/listExternalModels.dita" type="reference"/>
+      <topicref href="operations/createExternalModel.dita" type="reference"/>
+      <topicref href="operations/updateExternalModel.dita" type="reference"/>
+      <topicref href="operations/deleteExternalModel.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>externalproviders</navtitle>
+      </topicmeta>
+      <topicref href="operations/listExternalProviders.dita" type="reference"/>
+      <topicref href="operations/createExternalProvider.dita" type="reference"/>
+      <topicref href="operations/updateExternalProvider.dita" type="reference"/>
+      <topicref href="operations/deleteExternalProvider.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>secrets</navtitle>
+      </topicmeta>
+      <topicref href="operations/listSecrets.dita" type="reference"/>
+      <topicref href="operations/createSecret.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>Other operations</navtitle>
+      </topicmeta>
+      <topicref href="operations/getHealthCheck.dita" type="reference"/>
+      <topicref href="operations/getCurrentUser.dita" type="reference"/>
+      <topicref href="operations/isMaasAdmin.dita" type="reference"/>
+      <topicref href="operations/getNamespaces.dita" type="reference"/>
+   </topichead>
+   <topichead>
+      <topicmeta>
+         <navtitle>Data models</navtitle>
+      </topicmeta>
+      <topicref href="schemas/ErrorResponse.dita" type="reference"/>
+      <topicref href="schemas/HealthResponse.dita" type="reference"/>
+      <topicref href="schemas/User.dita" type="reference"/>
+      <topicref href="schemas/Namespace.dita" type="reference"/>
+      <topicref href="schemas/MaaSGatewayURL.dita" type="reference"/>
+      <topicref href="schemas/ModelDetails.dita" type="reference"/>
+      <topicref href="schemas/SubscriptionInfo.dita" type="reference"/>
+      <topicref href="schemas/ModelListResponse.dita" type="reference"/>
+      <topicref href="schemas/Model.dita" type="reference"/>
+      <topicref href="schemas/ApiKeyConfig.dita" type="reference"/>
+      <topicref href="schemas/ApiKey.dita" type="reference"/>
+      <topicref href="schemas/SubscriptionDetail.dita" type="reference"/>
+      <topicref href="schemas/ApiKeyListResponse.dita" type="reference"/>
+      <topicref href="schemas/GroupReference.dita" type="reference"/>
+      <topicref href="schemas/OwnerSpec.dita" type="reference"/>
+      <topicref href="schemas/TokenRateLimit.dita" type="reference"/>
+      <topicref href="schemas/BillingRate.dita" type="reference"/>
+      <topicref href="schemas/ConditionSummary.dita" type="reference"/>
+      <topicref href="schemas/ModelSubscriptionRef.dita" type="reference"/>
+      <topicref href="schemas/TokenMetadata.dita" type="reference"/>
+      <topicref href="schemas/SubscriptionListItem.dita" type="reference"/>
+      <topicref href="schemas/ModelRefInfo.dita" type="reference"/>
+      <topicref href="schemas/MaaSSubscription.dita" type="reference"/>
+      <topicref href="schemas/SubjectSpec.dita" type="reference"/>
+      <topicref href="schemas/ModelRef.dita" type="reference"/>
+      <topicref href="schemas/MaaSAuthPolicy.dita" type="reference"/>
+      <topicref href="schemas/ModelReference.dita" type="reference"/>
+      <topicref href="schemas/MaaSModelRefSummary.dita" type="reference"/>
+      <topicref href="schemas/CreateSubscriptionRequest.dita" type="reference"/>
+      <topicref href="schemas/UpdateSubscriptionRequest.dita" type="reference"/>
+      <topicref href="schemas/CreateSubscriptionResponse.dita" type="reference"/>
+      <topicref href="schemas/SubscriptionInfoResponse.dita" type="reference"/>
+      <topicref href="schemas/CreatePolicyRequest.dita" type="reference"/>
+      <topicref href="schemas/UpdatePolicyRequest.dita" type="reference"/>
+      <topicref href="schemas/PolicyInfoResponse.dita" type="reference"/>
+      <topicref href="schemas/CreateMaaSModelRefRequest.dita" type="reference"/>
+      <topicref href="schemas/UpdateMaaSModelRefRequest.dita" type="reference"/>
+      <topicref href="schemas/YamlResponse.dita" type="reference"/>
+      <topicref href="schemas/ProviderRef.dita" type="reference"/>
+      <topicref href="schemas/ExternalProviderDetails.dita" type="reference"/>
+      <topicref href="schemas/ExternalModelMaaSModelRefStatus.dita" type="reference"/>
+      <topicref href="schemas/ExternalProviderSummary.dita" type="reference"/>
+      <topicref href="schemas/CreateExternalProviderRequest.dita" type="reference"/>
+      <topicref href="schemas/UpdateExternalProviderRequest.dita" type="reference"/>
+      <topicref href="schemas/ExternalModelSummary.dita" type="reference"/>
+      <topicref href="schemas/CreateExternalModelRequest.dita" type="reference"/>
+      <topicref href="schemas/UpdateExternalModelRequest.dita" type="reference"/>
+      <topicref href="schemas/SecretSummary.dita" type="reference"/>
+      <topicref href="schemas/CreateSecretRequest.dita" type="reference"/>
+      <topicref href="schemas/CreateSecretResponse.dita" type="reference"/>
+   </topichead>
+</map>

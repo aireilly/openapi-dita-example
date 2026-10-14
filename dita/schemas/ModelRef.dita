@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="ModelRef" xml:lang="en-US">
+   <title>ModelRef</title>
+   <refbody>
+      <section id="description">
+         <p>Simple reference to a MaaSModelRef by name and namespace</p>
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>name</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Name of the MaaSModelRef</p><p>Example: <codeph>llama-2-7b-chat</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>namespace</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>Yes</stentry>
+               <stentry><p>Namespace where the MaaSModelRef lives</p><p>Example: <codeph>maas-models</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "name": "llama-2-7b-chat",
+  "namespace": "maas-models"
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="MaaSAuthPolicy.dita" type="reference"/>
+         <link href="CreatePolicyRequest.dita" type="reference"/>
+         <link href="UpdatePolicyRequest.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

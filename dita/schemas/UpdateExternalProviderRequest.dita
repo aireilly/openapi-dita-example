@@ -1,0 +1,84 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="UpdateExternalProviderRequest" xml:lang="en-US">
+   <title>UpdateExternalProviderRequest</title>
+   <refbody>
+      <section id="description">
+         <p>Type: object</p>
+      </section>
+      <section id="properties">
+         <title>Properties</title>
+         <simpletable relcolwidth="2* 2* 1* 5*">
+            <sthead>
+               <stentry>Property</stentry>
+               <stentry>Type</stentry>
+               <stentry>Required</stentry>
+               <stentry>Description</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>displayName</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>description</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>endpointUrl</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>FQDN of the external provider with no scheme or path (e.g. api.openai.com)</p><p>Constraints: minimum length 1; maximum length 253; pattern <codeph>^[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?(\.[a-zA-Z0-9]([a-zA-Z0-9\-]*[a-zA-Z0-9])?)+$</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>authMechanism</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Allowed values: <codeph>apikey</codeph>, <codeph>sigv4</codeph>, <codeph>oauth2</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>credentialSecretRef</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry/>
+            </strow>
+            <strow>
+               <stentry><codeph>provider</codeph></stentry>
+               <stentry>string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Provider identifier (spec.provider)</p><p>Constraints: minimum length 1; maximum length 63; pattern <codeph>^\S(?:.*\S)?$</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>config</codeph></stentry>
+               <stentry>map of string</stentry>
+               <stentry>No</stentry>
+               <stentry><p>Optional provider-specific configuration key-value pairs (spec.config)</p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example">
+         <title>Example</title>
+         <codeblock outputclass="language-json">{
+  "displayName": "string",
+  "description": "string",
+  "endpointUrl": "string",
+  "authMechanism": "apikey",
+  "credentialSecretRef": "string",
+  "provider": "string",
+  "config": {
+    "key": "string"
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Used by</title>
+         <link href="../operations/updateExternalProvider.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

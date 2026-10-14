@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE reference
+  PUBLIC "-//OASIS//DTD DITA Reference//EN" "reference.dtd">
+<reference id="createPolicy" xml:lang="en-US">
+   <title>Create a new policy</title>
+   <prolog>
+      <metadata>
+         <keywords>
+            <keyword>policies</keyword>
+         </keywords>
+         <othermeta name="http-method" content="POST"/>
+         <othermeta name="path" content="/api/v1/new-policy"/>
+         <othermeta name="operationId" content="createPolicy"/>
+      </metadata>
+   </prolog>
+   <refbody>
+      <refsyn>
+         <p outputclass="api-endpoint"><b>POST /api/v1/new-policy</b></p>
+         <codeblock outputclass="language-http">POST /maas/api/v1/new-policy</codeblock>
+      </refsyn>
+      <section id="description">
+         <p>Creates a new MaaSAuthPolicy resource.
+K8s calls: CREATE /k8s/v1/maasauthpolicy</p>
+      </section>
+      <section id="authorization">
+         <title>Authorization</title>
+         <ul>
+            <li><xref href="../overview.dita#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+      <section id="request-body">
+         <title>Request body</title>
+         <p>Required.</p>
+         <p>Content type: <codeph>application/json</codeph></p>
+         <p>Schema: <xref href="../schemas/CreatePolicyRequest.dita" type="reference">CreatePolicyRequest</xref></p>
+         <p>Example:</p>
+         <codeblock outputclass="language-json">{
+  "name": "team-alpha-policy",
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models"
+    }
+  ],
+  "subjects": {
+    "groups": [
+      {
+        "name": "team-alpha"
+      }
+    ]
+  },
+  "meteringMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering"
+  }
+}</codeblock>
+      </section>
+      <section id="responses">
+         <title>Responses</title>
+         <simpletable relcolwidth="1* 4* 3*">
+            <sthead>
+               <stentry>Status</stentry>
+               <stentry>Description</stentry>
+               <stentry>Response body</stentry>
+            </sthead>
+            <strow>
+               <stentry><codeph>201</codeph> Created</stentry>
+               <stentry><p>Policy created successfully</p></stentry>
+               <stentry><p><xref href="../schemas/MaaSAuthPolicy.dita" type="reference">MaaSAuthPolicy</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>400</codeph> Bad Request</stentry>
+               <stentry><p>Bad Request. Missing or invalid fields.</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>401</codeph> Unauthorized</stentry>
+               <stentry><p>Unauthorized</p></stentry>
+               <stentry>None</stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>409</codeph> Conflict</stentry>
+               <stentry><p>Conflict. Policy with this name already exists.</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+            <strow>
+               <stentry><codeph>500</codeph> Internal Server Error</stentry>
+               <stentry><p>Internal Server Error</p></stentry>
+               <stentry><p><xref href="../schemas/ErrorResponse.dita" type="reference">ErrorResponse</xref></p><p><codeph>application/json</codeph></p></stentry>
+            </strow>
+         </simpletable>
+      </section>
+      <example id="example-request">
+         <title>Example request</title>
+         <codeblock outputclass="language-bash">curl -X POST "/maas/api/v1/new-policy" \
+  -H "Authorization: Bearer $TOKEN" \
+  -H "Content-Type: application/json" \
+  -d '{
+  "name": "team-alpha-policy",
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models"
+    }
+  ],
+  "subjects": {
+    "groups": [
+      {
+        "name": "team-alpha"
+      }
+    ]
+  },
+  "meteringMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering"
+  }
+}'</codeblock>
+      </example>
+      <example id="example-response">
+         <title>Example response</title>
+         <p><codeph>201</codeph> Created, <codeph>application/json</codeph></p>
+         <codeblock outputclass="language-json">{
+  "name": "team-alpha-policy",
+  "namespace": "maas-system",
+  "phase": "Pending",
+  "modelRefs": [
+    {
+      "name": "llama-2-7b-chat",
+      "namespace": "maas-models"
+    }
+  ],
+  "subjects": {
+    "groups": [
+      {
+        "name": "team-alpha"
+      }
+    ]
+  },
+  "meteringMetadata": {
+    "organizationId": "org-123",
+    "costCenter": "engineering"
+  }
+}</codeblock>
+      </example>
+   </refbody>
+   <related-links>
+      <linklist>
+         <title>Data models</title>
+         <link href="../schemas/CreatePolicyRequest.dita" type="reference"/>
+         <link href="../schemas/MaaSAuthPolicy.dita" type="reference"/>
+         <link href="../schemas/ErrorResponse.dita" type="reference"/>
+      </linklist>
+   </related-links>
+</reference>

@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE concept
+  PUBLIC "-//OASIS//DTD DITA Concept//EN" "concept.dtd">
+<concept id="overview" xml:lang="en-US">
+   <title>MaaS BFF API</title>
+   <conbody>
+      <p>Backend for Frontend (BFF) API for Model as a Service (MaaS)</p>
+      <section id="about">
+         <title>About this API</title>
+         <dl>
+            <dlentry>
+               <dt>Version</dt>
+               <dd>1.0.0</dd>
+            </dlentry>
+            <dlentry>
+               <dt>Specification</dt>
+               <dd>OpenAPI 3.0.3</dd>
+            </dlentry>
+            <dlentry>
+               <dt>License</dt>
+               <dd><xref href="https://www.apache.org/licenses/LICENSE-2.0.html" scope="external" format="html">Apache 2.0</xref></dd>
+            </dlentry>
+         </dl>
+      </section>
+      <section id="servers">
+         <title>Servers</title>
+         <ul>
+            <li><p><codeph>/maas</codeph> - Base path for MaaS BFF</p></li>
+         </ul>
+      </section>
+      <section id="authentication">
+         <title>Authentication</title>
+         <dl>
+            <dlentry>
+               <dt>bearerAuth</dt>
+               <dd><p>HTTP bearer token (JWT) in the Authorization header.</p></dd>
+            </dlentry>
+         </dl>
+         <p>Unless an operation says otherwise, requests must use:</p>
+         <ul>
+            <li><xref href="#overview/authentication" type="section">bearerAuth</xref></li>
+         </ul>
+      </section>
+   </conbody>
+</concept>
